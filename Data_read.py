@@ -19,9 +19,10 @@ table=[]
 table = Data_convert_Weka.table_bulid(parsedDat)
 Data_convert_Weka.csv_conv(table, parsedDat, "weka.csv")
 initSet = FP_Growth.createInitSet(parsedDat)   #初始set格式化
-myFPtree, myHeaderTab = FP_Growth.createTree(initSet, 10)   #建FP-tree
+myFPtree, myHeaderTab = FP_Growth.createTree(initSet, 3)   #建FP-tree
 myFreqList = []    #保存FrequentItemSet
-FP_Growth.mineTree(myFPtree, myHeaderTab, 7, set([]), myFreqList)
+FP_Growth.mineTree(myFPtree, myHeaderTab, 3, set([]), myFreqList)
 myFPtree.show()
+FP_Growth.associate(parsedDat,myFreqList)
 #print(len(myFreqList))
-#print(myFreqList)
+print(myFreqList)

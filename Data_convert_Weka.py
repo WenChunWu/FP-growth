@@ -6,9 +6,9 @@ def csv_conv(table, simpDat, fileName): #寫檔，把data寫成符合Weka的格�
             line=[]
             for tr in table:
                 if tr in item:
-                    line.append("1")
+                    line.append("T")
                 else:
-                    line.append("0")
+                    line.append("")
             f.write(','.join(line))
 def table_bulid(simpDat): #建table,把資料存入table
     table=[]

@@ -117,8 +117,8 @@ def mineTree(inTree,headerTable,minSup,preFix,freqItemList):
         myConTree,myHead = createTree(condPattBases, minSup)
         
         if myHead != None:
-            print('conditional tree for :', newFreqSet)
-            myConTree.show()
+            #print('conditional tree for :', newFreqSet)
+            #myConTree.show()
             mineTree(myConTree, myHead, minSup, newFreqSet, freqItemList)
 
 def fpGrowth(dataSet, minSup=2):
@@ -127,6 +127,41 @@ def fpGrowth(dataSet, minSup=2):
     freqItems = []
     mineTree(myFPtree, myHeaderTab, minSup, set([]), freqItems)
     return freqItems
+def checkIsexist(item, datas):
+    exist_count = 0
+    isexist = False
+    for i in item:
+        if i in datas :
+            exist_count+=1
+    if exist_count == len(item):
+        isexist=True
+    return isexist
+
+def checkAnyexist(item_i, item_j):
+    isexist = False
+    for i in item_i:
+        for j in item_j:
+            if i == j:
+                isexist = True
+    return isexist
+def associate(simpDat,freqItems):
+    for item_i in freqItems:
+        for item_j in freqItems:
+            if item_i != item_j:
+                item_i_count=0
+                item_j_count=0
+                if not (checkIsexist(item_i, item_j) or checkIsexist(item_j, item_i) or checkAnyexist(item_i, item_j)):
+                    for datas in simpDat:
+                        if checkIsexist(item_i, datas):
+                            item_i_count += 1
+                        
+                        if checkIsexist(item_i, datas) and checkIsexist(item_j, datas):
+                            item_j_count += 1
+                    if item_i_count != 0 and item_j_count != 0 and item_j_count/item_i_count>=0.5 and item_j_count!=1:
+                        print(item_i," >>> ", item_j)
+                        print("item_i_count :", item_i_count)
+                        print("item_j_count :", item_j_count)
+                        print("conf :", item_j_count/item_i_count)
 
 if __name__=="__main__":
     
@@ -136,11 +171,13 @@ if __name__=="__main__":
     initSet = createInitSet(simpDat)
     myFPtree, myHeaderTab = createTree(initSet, 2)
     myFPtree.show()
+
+
 #    
 #    #測試findPrefixPath
 #   
-    for index in myHeaderTab:
-        print(index,findPrefixPath('Bread', myHeaderTab[index][1]))
+    #for index in myHeaderTab:
+    #    print(index,findPrefixPath('Bread', myHeaderTab[index][1]))
     # print("z",findPrefixPath('z', myHeaderTab['z'][1]))
     # print("r",findPrefixPath('r', myHeaderTab['r'][1]))
 #    
@@ -152,4 +189,6 @@ if __name__=="__main__":
     
     dataSet = loadSimpDat()
     freqItems = fpGrowth(dataSet)
+
+    print(associate(dataSet,freqItems))
     print(freqItems)

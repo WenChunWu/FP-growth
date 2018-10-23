@@ -5,7 +5,7 @@ Created on Sun Oct 21 02:24:27 2018
 @author: Tony
 """
 
-f = open('data.ntrans_1.tlen_5.nitems_1.npats_100.patlen_4', 'r')   
+f = open('data.ntrans_0.1.tlen_5.nitems_0.1', 'r')   
 Init_list = list()   
 second_list = list()   
 record_list = list()   
