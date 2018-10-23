@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Oct 19 20:11:39 2018
-
-@author: Tony
-"""
-
-# -*- coding: utf-8 -*-
-"""
 Created on Thu Oct 18 21:24:10 2018
 
 @author: Tony
