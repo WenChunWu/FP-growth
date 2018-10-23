@@ -1,6 +1,6 @@
 # Data-mining Homework
 
-Datamining_Report_HW1.pdf為報告與成果展現的檔案。
+Datamining_Report_HW1.pdf為報告與成果展現的檔案，每個程式碼裡都有含註解。
 
 **Code:**
 
